@@ -1,0 +1,53 @@
+<div class='form'>
+<p style="color: green"><%= notice %></p>
+
+<%= render @book %>
+
+<p>
+   <% if @book.image.attached? %>
+     <%= image_tag @book.image, size: 500 %>
+   <% end %>
+</p>
+
+ <h5>
+  <strong>Details:</strong>
+  <%= @book.detail %>
+</h5>
+
+<%= form_with(model: @book_review) do |form| %>
+  <h2>Review Form</h2>
+  <div>
+    <%= form.label :review, style: "display: block" %>
+    <%= form.text_area :review %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+    <%= form.hidden_field :book_id, :value => @book.id %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+    <% end %>
+
+<h2>Review list</h2>
+  <ul>
+    <% @book.book_review.each do |book_review| %>
+      <li><%= book_review.review %> (<i><%= book_review.user.name %></i>)</li>
+    <% end %>
+</ul>
+<div>
+  <%= link_to "Edit this book", edit_book_path(@book), class: "btn btn-success" %>
+  <%= link_to "Back to books", books_path, class:"btn btn-primary"  %> <br>
+
+  <%= button_to "Destroy this book", @book, method: :delete, class:"btn btn-danger" %>
+</div>
+</div>
+
+<style>
+  .form {
+    color: #4949BC;
+    padding-left: 40%;
+    padding-top: 30px;
+    padding-bottom: 25%;
+    background: #D3D3D3;
+    
+  }
+</style>

@@ -1,0 +1,23 @@
+<div class='form'>
+<h1>Editing book</h1>
+
+<%= render "form", book: @book %>
+
+<br>
+
+<div>
+  <%= link_to "Show this book", @book, class: "btn btn-success"  %>
+  <%= link_to "Back to books", books_path, class: "btn btn-primary" %>
+</div>
+</div>
+
+<style>
+  .form {
+    color: #4949BC;
+    padding-left: 40%;
+    padding-top: 30px;
+    padding-bottom: 25%;
+    background: #D3D3D3;
+    
+  }
+</style>
